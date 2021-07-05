@@ -29,7 +29,7 @@ def get_prediction(img):
     img_PIL = Image.open(img)
 
     img_bw = img_PIL.convert('L')
-    img_resize = img_bw.resize((28, 28), Image.ANTIALIAS)
+    img_resize = img_bw.resize((22, 30), Image.ANTIALIAS)
 
     pixcel_filter = 20
     min_pixcel = np.percentile(img_resize, pixcel_filter)
@@ -39,7 +39,7 @@ def get_prediction(img):
 
     img_resize_scaled = np.asarray(img_scale)/max_pixcel
 
-    test_sample = np.array(img_resize_scaled).reshape(1, 784)
+    test_sample = np.array(img_resize_scaled).reshape(1, 660)
     test_prediction = classifier.predict(test_sample)
 
     return test_prediction[0]
